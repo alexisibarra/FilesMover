@@ -12,29 +12,31 @@ for subdir in "${SUBDIRS[@]}"; do
   source_subdir="$SOURCE_DIR/$subdir"
   target_subdir="$TARGET_DIR/$subdir"
 
+  # echo "Source: $source_subdir"
+  # echo "Target: $target_subdir"
+
   # Check if the source subdirectory exists
   if [ -d "$source_subdir" ]; then
-    #Check if the source subdirectory is empty.
+
+    # Check if the source subdirectory is empty.
     if [[ $(ls -A "$source_subdir") ]]; then
-      # Create the target subdirectory if it doesn't exist
-      mkdir -p "$target_subdir"
 
-      # Move all contents from source to target
-      # The -n option prevents overwriting existing files in the target.
-      # The -v option gives verbose output.
-      # The --preserve=all option preserves as much as possible of the original files metadata.
-      mv -nv "$source_subdir"/* "$target_subdir"
+        # Create the target subdirectory if it doesn't exist
+        mkdir -p "$target_subdir"
+        # echo "Files found: $(shopt -s nullglob; echo "$source_subdir"/*)"
 
-      # Optionally, remove the now-empty source directory
-      # If you want to keep the empty directories, remove the next line.
-      # if [ "$(ls -A $source_subdir)" ]; then
-      #     echo "Source directory $source_subdir is not empty. Review before deleting."
-      # else
-      #     rmdir "$source_subdir"
-      # fi
+        # Check if there are any files to move by checking the glob expansion
+        if [[ -n "$(shopt -s nullglob; echo "$source_subdir"/*)" ]]; then
+          # Move all contents from source to target
+          mv -nv "$source_subdir"/* "$target_subdir"
+        else
+            echo "Source subdirectory '$source_subdir' is empty of files. Skipping move."
+        fi
+
     else
-      echo "Skipping empty source directory: $source_subdir"
+        echo "Skipping empty source directory: $source_subdir"
     fi
+
   else
     echo "Source subdirectory '$source_subdir' not found."
   fi
