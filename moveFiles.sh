@@ -51,7 +51,7 @@ for subdir in "${SUBDIRS[@]}"; do
         fi
 
         # Move all contents from source to target
-        mv -nv --preserve=all "$source_subdir"/* "$target_subdir"
+        mv -nv "$source_subdir"/* "$target_subdir"
       else
         if $VERBOSE; then
             echo "Source subdirectory '$source_subdir' is empty of files. Skipping move."
