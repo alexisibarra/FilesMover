@@ -9,7 +9,7 @@ REMOTE_HOST="your_remote_hostname_or_ip"
 REMOTE_BASE_DIR="/path/to/remote/target/directory" # e.g., /home/user/Videos
 
 # Array of subdirectories to process relative to SOURCE_DIR
-SUBDIRS=("Concerts" "DC" "Documentaries" "Movies" "StandUps")
+SUBDIRS=("Concerts" "DC" "Documentaries" "Movies" "Series" "StandUps")
 
 # === Script Logic ===
 

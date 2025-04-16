@@ -5,7 +5,7 @@ SOURCE_DIR="."
 TARGET_DIR="/Volumes/AI-Movies/Videos"
 
 # Array of subdirectories to process
-SUBDIRS=("Concerts" "DC" "Documentaries" "Movies" "StandUps")
+SUBDIRS=("Concerts" "DC" "Documentaries" "Movies" "Series" "StandUps")
 
 # Verbose flag
 VERBOSE=false
